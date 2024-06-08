@@ -1,8 +1,11 @@
 <template>
 <img src="./assets/logo.png" alt="No esta la imagen :c">
-  <Contador titulo="Estudiante"/><!--Cada uno es una isntancia diferente e independiente-->
-  <Contador titulo="Profesor"/>
-  <Contador/>
+  <Contador titulo="Estudiante" :num="-1"/><!--Cada uno es una isntancia diferente e independiente-->
+  <Contador titulo="Profesor" />
+  <!--v-bind Esta directiva evalua lo que esta dentro de las ""
+  como una sentencia JS (codificacion JS)
+  El shortcut es :-->
+  <Contador :num="calcularValor()"/>
 </template>
 
 <script>
@@ -13,6 +16,12 @@ export default {
   components: {
     Contador,
   },
+
+  methods: {
+    calcularValor(){
+      return 10+2;
+    }
+  }
 };
 </script>
 

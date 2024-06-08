@@ -1,5 +1,5 @@
 <template>
-  <h2>{{presentar}}</h2>
+  <h2>{{ presentar }}</h2>
   <p>{{ numero }} <sup>2</sup>= {{ calcular }}</p>
 
   <div>
@@ -11,13 +11,28 @@
 <script>
 //Las propiedades re
 export default {
-  props: ["titulo","num"],
+  //primera forma o forma basica de declarar un props
+  //props: ["titulo","num"],
+
+  props: {
+    titulo: String,
+    num: {
+      type: Number,
+      //Que siempre el atributo sera requerido
+      required: false,
+      default: 10,
+      validator(value) {
+        //toda la programacion que retorne un valor booleano
+        return value >=0;
+      },
+    },
+  },
 
   data() {
     //Opcion de Option API
     return {
-      //proiedad reactiva
-      numero: 5,
+      //proiedad reactiva como props con el this
+      numero: this.num,
     };
   },
 
@@ -52,13 +67,13 @@ export default {
       return this.numero * this.numero;
     },
 
-    presentar (){
-        if(this.titulo !== undefined){
-            return this.titulo;
-        }else{
-            return "texto que quiero"
-        }
-    }
+    presentar() {
+      if (this.titulo !== undefined) {
+        return this.titulo;
+      } else {
+        return "texto que quiero";
+      }
+    },
   },
 };
 </script>
