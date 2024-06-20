@@ -12,9 +12,9 @@
       placeholder="Hazme una pregunta ..."
     />
     <p>Recuerda terminar la pregunta con un signo de interrogación (?)</p>
-    <div class="respuesta">
+    <div v-show="mensaje" class="respuesta">
       <h2>{{ pregunta }}</h2>
-      <h1>{{ respuesta }}</h1>
+      <h1>{{ respuesta === "yes"? "SI!":"NO!" }}</h1>
     </div>
   </div>
 </template>
@@ -26,6 +26,7 @@ export default {
       pregunta: null,
       respuesta: null,
       img: null,
+      mensaje: false
     };
   },
   /**observador debe crearse como un metodo, que tiene el mismo nombre de la
@@ -34,12 +35,14 @@ export default {
    */
   watch: {
     pregunta(value, oldValue) {
+      this.mensaje = false;
       if (!value.includes("?")) {
         return;
       }
       //Consumir el API para obtener la respuesta
       //Para consumir se usa un concepto de un cliente.
       this.obtenerRespuesta();
+      this.mensaje = true;
     },
   },
 
@@ -75,7 +78,8 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+/*Se garantiza que este estilo se aplique al componente que deseamos*/
 /*Que la imagen oupe toda la pag web*/
 img,
 .oscuro {
@@ -132,4 +136,6 @@ h1 {
   margin-top: 100px;
 }
 /**watch observador que mira las propiedades reactivas evaluando los cambios que hayan en la propiedad reactiva */
+
+
 </style>
