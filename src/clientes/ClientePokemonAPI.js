@@ -16,6 +16,7 @@ const obtenerPokemon = async (longitud) => {
     for (let i = 0; i < longitud; i++) {
         vectorFinal[i] = await construirPokemon(vectorNumerico[i]);
     }
+    return vectorFinal;
 }
 
 async function construirPokemon(identificador) {
@@ -24,6 +25,7 @@ async function construirPokemon(identificador) {
 
     const obj = {
         nombre: data.name,
+        //id: identificador
         id: data.id
     }
     return obj;

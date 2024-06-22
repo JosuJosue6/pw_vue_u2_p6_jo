@@ -43,6 +43,7 @@ img {
   width: 300px;
   position: absolute;
   right: 40%;
+
 }
 
 .pokemon-container {
