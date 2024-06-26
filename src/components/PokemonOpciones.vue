@@ -48,6 +48,11 @@ li:hover {
     background: rgb(0, 0, 0, 0.2);
 }
 
+li:active   {
+    background: rgb(0, 0, 0, 0.2);
+    cursor: not-allowed;
+}
+
 .opciones-container {
     display: flex;
     justify-content: center;
